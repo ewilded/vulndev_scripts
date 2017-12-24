@@ -9,3 +9,5 @@ hex2char.pl - inline asciihex to char converter
 https://github.com/reyammer/shellnoob - very handy for various shellcode/opcode/asm conversions
 
 https://github.com/pk-man/objdump-shellcode-parser/blob/master/objdump.py - generates shellcode from objdump output
+
+https://github.com/SaltwaterC/sploit-tools - pattern create/offset, lighter than metasploit
