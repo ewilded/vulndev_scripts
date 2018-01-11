@@ -4,33 +4,35 @@ use strict;
 
 ## a simple helper to convert a string into a hexadecimal representation of dwords in an order suitable for pushing on the stack in assembly; useful for shellcode building
 
-my $input="cmd.exe /c net user hacker Password91 /add & net localgroup Administrators /add hacker";
+my $input="cmd.exe"; # /c net user hacker Password91 /add & net localgroup Administrators /add hacker";
 
-print "INPUT: $input";
+print "INPUT: $input\n";
+
+my $len=length($input);
+print "LEN IS: $len\n\n";
+
+my $mod=$len%4;
+print "Mod is $mod\n";
+
+if($mod eq 0)
+{
+	$input.="    ";
+}
+else
+{	
+	for(my $i=0;$i<4-$mod;$i++)
+	{
+		print "Adding a space\n";			
+		$input.=" ";
+	}
+}
+$len=length($input);
+print "LEN IS: $len\n\n";
+
+
 
 my @in = split //,$input;
 
-my $len=$#in;
-
-my $mod=$len%4;
-
-if($mod eq 0) ## adding padding so there is a holder for the nullbyte set by the shellcode itself
-{
-	push(@in," ");
-	push(@in," ");
-	push(@in," ");
-	push(@in," ");	
-}
-else
-{
-	for(my $i=0;$i<4-$mod;$i++)
-	{
-		push(@in," ");
-	}
-}
-$len=$#in;
-
-print "LEN IS: $len\n";
 my @out=();
 for(my $i=0;$i<$len;$i+=4)
 {
