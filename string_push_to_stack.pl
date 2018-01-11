@@ -14,7 +14,7 @@ my $mod=$len%4;
 
 for(my $i=0;$i<$mod;$i++)
 {
-	push(@in,"A");
+	push(@in," ");
 }
 $len=$#in;
 
